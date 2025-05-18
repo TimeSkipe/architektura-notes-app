@@ -6,6 +6,10 @@ const CategoryList = () =>{
     const setCategoryList = HomeStore((state) => state.setCategoryList)
     const setCreateCategoryWindow = HomeStore((state) => state.setCreateCategoryWindow)
 
+    const categories = HomeStore((state) => state.categories || [])
+
+    const setActiveCategory = HomeStore((state) => state.setActiveCategory)
+
     return(
         <>
         <div onClick={() => setCategoryList(false)} className={` ${CategoryList ? "z-[10]": '-z-10'} fixed inset-0 h-[100vh] w-[100vw]`}></div>
@@ -20,19 +24,13 @@ const CategoryList = () =>{
 
             {/* Category list*/}
             <div>
+                {!categories ? <div>Loading...</div> : (
+                    categories.map(category => 
+                    <div onClick={()=>setActiveCategory([{_id: category._id, name:category.name}])} key={category._id} style={{ borderColor: category.color }} className={` bg-[#F3F3F3] hover:bg-[#d4d4d4] ease-in-out duration-300 rounded-[10px] py-1 px-3 min-h-[40px] flex items-center border-l-[3px]  shadow-[2px_2px_4px_rgba(0,0,0,0.25)] mb-1 cursor-pointer`}>
+                        {category.name}
+                    </div>)
+                )}
                 
-                <div className="bg-[#F3F3F3] rounded-[10px] py-1 px-3 min-h-[40px] flex items-center border-l-[3px] border-red-500 shadow-[2px_2px_4px_rgba(0,0,0,0.25)] mb-1">
-                    Grouseries
-                </div>
-                <div className="bg-[#F3F3F3] rounded-[10px] py-1 px-3 min-h-[40px] flex items-center border-l-[3px] border-red-500 shadow-[2px_2px_4px_rgba(0,0,0,0.25)] mb-1">
-                    Grouseries
-                </div>
-                <div className="bg-[#F3F3F3] rounded-[10px] py-1 px-3 min-h-[40px] flex items-center border-l-[3px] border-red-500 shadow-[2px_2px_4px_rgba(0,0,0,0.25)] mb-1">
-                    Grouseries
-                </div>
-                <div className="bg-[#F3F3F3] rounded-[10px] py-1 px-3 min-h-[40px] flex items-center border-l-[3px] border-red-500 shadow-[2px_2px_4px_rgba(0,0,0,0.25)] mb-1">
-                    Grouseries
-                </div>
             </div>
         </div>
         </>

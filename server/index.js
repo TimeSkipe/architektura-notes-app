@@ -30,7 +30,7 @@ app.use(express.json())
 app.use('/api/notes', routerNote)
 app.use('/api/notes/category', routerCategory)
 app.use('/api/notes/password', routerPassword)
-app.use('/api/notes/reminder', routerReminder)
+app.use('/api/notes/reminder', routerReminder) 
 
 // console.log('Note routes:', listEndpoints(routerNote))
 // console.log('Category routes:', listEndpoints(routerCategory))

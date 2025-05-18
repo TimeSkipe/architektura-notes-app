@@ -6,7 +6,7 @@ const routerCategory = express.Router()
 // Create category
 routerCategory.post('/', async (req, res) => {
   const { name, color } = req.body
-
+  
   if (!name || typeof name !== 'string') {
     return res.status(400).json({
       error: 'invalidDtoIn',

@@ -12,6 +12,8 @@ const HomePage = () =>{
 
     const setNotes = HomeStore((state) => state.setNotes)
     const notes = HomeStore((state) => state.notes || [])
+    const setCategories = HomeStore((state) => state.setCategories)
+    const filteredNotes = HomeStore(state => state.filteredNotes);
 
     const GetNotes = async () =>{
         try {
@@ -22,9 +24,18 @@ const HomePage = () =>{
         }
     }
     
+    const GetCategory = async ()=>{
+        try {
+            const response = await axios.get("http://localhost:3500/api/notes/category")
+            setCategories(response.data)
+        } catch (error) {
+            console.error(error)
+        }
+    }
 
     useEffect(() => {
         GetNotes()
+        GetCategory()
     }, [])
 
     const setCreateNoteWindow = HomeStore((state) => state.setCreateNoteWindow)
@@ -32,7 +43,7 @@ const HomePage = () =>{
     return(
         <>
         <div className="relative">
-            <div className="text-[24px] h-[200px] bg-[#1C68DA] tracking-[10px] text-white w-full h-full flex justify-center items-center">
+            <div className="text-[24px] h-[200px] bg-[#1C68DA] tracking-[10px] text-white w-full flex justify-center items-center">
                 Personal Journaling App
             </div>
             <SearchBlock/>
@@ -41,8 +52,8 @@ const HomePage = () =>{
 
             {/* List of Notes */}
             <div className="m-auto m-0 w-1/2 mt-4">
-                {!notes ? <div>Loading...</div> : (
-                    notes.map(note => <NoteBlock key={note._id} data={note} />)
+                {!filteredNotes ? <div>Loading...</div> : (
+                    filteredNotes.map(note => <NoteBlock key={note._id} data={note}/>)
                 )}
             </div>
 
