@@ -9,7 +9,6 @@ const Filter = () =>{
 
     const ActiveCategory = HomeStore((state) => state.ActiveCategory || [])
     const removeActiveCategory = HomeStore((state) => state.removeActiveCategory)
-    console.log(ActiveCategory)
 
     return(
         <div className="w-1/2 m-0 m-auto flex justify-center items-end h-[70px]">

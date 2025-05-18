@@ -23,6 +23,7 @@ const CreateCategory = () => {
             console.log('Category was created', response.data)
             setCreateCategoryWindow(false)
             ClearAll()
+            window.location.reload();
           } catch (error) {
             console.error('ERROR', error)
           }

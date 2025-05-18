@@ -40,6 +40,18 @@ routerNote.get('/', async (req, res) => {
   }
 })
 
+// get note by id
+routerNote.get('/:id', async (req, res)=>{
+  try {
+    const NoteById = await Note.findById(req.params.id)
+    res.status(200).json(NoteById)
+  } catch (error) {
+    res.status(500).json({
+      error: 'loadFailed',
+      message: 'Failed to load notes'
+    })
+  }
+})
 // Delete note
 routerNote.delete('/:id', async (req, res) => {
   try {

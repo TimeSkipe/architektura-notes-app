@@ -26,9 +26,8 @@ app.use(express.json())
 // app.get('/test', (req, res) => {
 //   res.json({ message: 'CORS OK' })
 // })
-
-app.use('/api/notes', routerNote)
 app.use('/api/notes/category', routerCategory)
+app.use('/api/notes', routerNote)
 app.use('/api/notes/password', routerPassword)
 app.use('/api/notes/reminder', routerReminder) 
 

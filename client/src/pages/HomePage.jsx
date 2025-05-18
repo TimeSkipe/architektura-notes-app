@@ -2,6 +2,7 @@ import CreateButton from "../components/ComonComponents/CreateButton"
 import Filter from "../components/ComonComponents/Filter"
 import NoteBlock from "../components/ComonComponents/NoteBlock"
 import SearchBlock from "../components/ComonComponents/SearchBlock"
+import CheckPassword from "../components/ModalWindows/CheckPassword"
 import CreateCategory from "../components/ModalWindows/CreateCategory"
 import CreateNote from "../components/ModalWindows/CreateNote"
 import HomeStore from "../store/HomePageStore"
@@ -11,7 +12,6 @@ import { useEffect } from 'react'
 const HomePage = () =>{
 
     const setNotes = HomeStore((state) => state.setNotes)
-    const notes = HomeStore((state) => state.notes || [])
     const setCategories = HomeStore((state) => state.setCategories)
     const filteredNotes = HomeStore(state => state.filteredNotes);
 
@@ -42,7 +42,7 @@ const HomePage = () =>{
 
     return(
         <>
-        <div className="relative">
+        <div className="relative w-full">
             <div className="text-[24px] h-[200px] bg-[#1C68DA] tracking-[10px] text-white w-full flex justify-center items-center">
                 Personal Journaling App
             </div>

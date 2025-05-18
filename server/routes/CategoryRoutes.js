@@ -33,10 +33,12 @@ routerCategory.get('/', async (req, res) => {
     const categories = await Category.find().sort({ createdAt: -1 })
     res.status(200).json(categories)
   } catch (error) {
+    console.error("Category loading error:", error);
     res.status(500).json({
       error: 'loadFailed',
-      message: 'Failed to load categories'
-    })
+      message: 'Failed to load categories',
+      details: error.message
+    });
   }
 })
 

@@ -30,6 +30,9 @@ const HomeStore = create((set)=>({
       ActiveCategory: state.ActiveCategory.filter(cat => cat._id !== idToRemove)
     } )),
     setFilteredNotes: (notes) => set({ filteredNotes: notes }),
+
+    CheckPasswordWindow:false,
+    setCheckPasswordWindow: (active) => set({ CheckPasswordWindow: active }),
 }))
 
 export default HomeStore
