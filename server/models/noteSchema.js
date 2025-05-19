@@ -1,6 +1,9 @@
 import mongoose from "mongoose";
 
 const NoteSchema = new mongoose.Schema({
+
+    // Model of Note for mongo
+
     title:{
         type: String,
         required:true,

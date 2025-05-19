@@ -5,20 +5,28 @@ import SettingIcon from "../../svg/SettingIcon"
 import NoteSetting from "../ModalWindows/NoteSetting";
 import DeleteNote from "../ModalWindows/DeleteNote";
 import SetPassWordCom from "../ModalWindows/SetPassword"
-import SetReminderDataCom from "../ModalWindows/SetReminderData.jsx";
+import SetReminderDataCom from "../ModalWindows/SetReminderData";
 import EditNoteCom from "../ModalWindows/EditNote.jsx";
 
 const HeaderCom = () =>{
+    
+    // HeaderCom that component, that contains modal com.s, for NotePage
+
+
+    // Navigation back
     const navigate = useNavigate();
 
+    // Zustand state
     const Note = NotePageStore((state) => state.Note)
     const setOpenSetting = NotePageStore((state) => state.setOpenSetting)
     const OpenSetting = NotePageStore((state) => state.OpenSetting)
     
-
+    // navigation back
     const TurnBack = () =>{
         navigate(-1)
     }
+
+    
     return(
         <div className="bg-[#1C68DA] relative px-2 h-[70px] flex justify-between items-center text-[20px] text-white">
             

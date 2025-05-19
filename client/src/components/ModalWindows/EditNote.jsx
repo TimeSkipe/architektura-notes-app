@@ -8,15 +8,22 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 
 const EditNoteCom = () =>{
+
+    // EditNoteCom modal component, that help user edit a note
+
+    // useParams, use id for axios request on server
     const { id } = useParams();
 
+
+    // Zustand state
     const EditNoteWindow = NotePageStore((state) => state.EditNoteWindow)
     const setEditNoteWindow = NotePageStore((state) => state.setEditNoteWindow)
     const OpenCategoryList = NotePageStore((state)=> state.OpenCategoryList)
     const setOpenCategoryList = NotePageStore((state) => state.setOpenCategoryList)
-
     const categories = HomeStore((state) => state.categories || [])
 
+
+    // React useStates
     const [title, setTitle] = useState('')
     const [content, setContent] = useState('')
     const [categori, setCategory] = useState({
@@ -24,12 +31,16 @@ const EditNoteCom = () =>{
         categoryName:""
     })
 
+
+    //ClearAll, cleaning servise
     const ClearAll = () =>{
         setTitle("")
         setContent('')
         setCategory({})
       }
 
+
+    //EditNote, ist put request on server, that change some info about note
     const EditNote = async () => {
             try {
                 const response = await axios.put(`http://localhost:3500/api/notes/${id}`, {
@@ -38,40 +49,42 @@ const EditNoteCom = () =>{
                 category:categori._id
                 });
 
-                console.log('Нотатку оновлено:', response.data);
+                console.log('Note updated:', response.data);
                 ClearAll()
                 setOpenCategoryList(false)
                 setEditNoteWindow(false)
                 return response.data;
                 
             } catch (error) {
-                console.error('Помилка при оновленні нотатки:', error.response?.data || error.message);
+                console.error('Error updating a note:', error.response?.data || error.message);
                 throw error;
             }
           }
+
+
     return(
         <div className={` ${EditNoteWindow ? "" : "hidden"} absolute h-[100vh] w-[100vw] bg-white top-0 right-0 z-50`}>
             
             <div className="w-1/2 m-0 m-auto">
-                {/* */}
+                {/* From title */}
                 <div className="flex justify-between items-center text-[24px] h-15 py-2 text-black">
                     Edit a note 
                     <CloseIcon className={"cursor-pointer"} onClick ={()=>{setEditNoteWindow(false); ClearAll(); setOpenCategoryList(false)}}/>
                 </div>
 
-                {/* */}
+                {/* Input */}
                 <div className="flex flex-col mb-3 text-black">
                     Title
                     <input value={title} onChange={(e)=>setTitle(e.target.value)} type="text" placeholder="Write a text" className="h-[50px] bg-[#F3F3F3] rounded-[15px] px-3 shadow-[2px_2px_4px_rgba(0,0,0,0.25)] outline-none"/>
                 </div>
 
-                {/* */}
+                {/* Input */}
                 <div className="flex flex-col mb-3 text-black">
                     Content
                     <input value={content} onChange={(e)=>setContent(e.target.value)} type="text" placeholder="Write a text" className="h-[50px] bg-[#F3F3F3] rounded-[15px] px-3 shadow-[2px_2px_4px_rgba(0,0,0,0.25)] outline-none"/>
                 </div>
 
-                {/* */}
+                {/* Category list */}
                 <div className="flex flex-col mb-3 relative text-black">
                     Category
                     <div className={` ${OpenCategoryList ? "rounded-t-[15px]" : "rounded-[15px]"} flex justify-between items-center text-[#9E9E9E] h-[60px] w-full bg-[#F3F3F3] px-3 shadow-[2px_2px_4px_rgba(0,0,0,0.25)]`}>
@@ -87,7 +100,7 @@ const EditNoteCom = () =>{
                     </div>
                 </div>
 
-                {/* */}
+                {/* SaveButton */}
                 <SaveButton onClick={()=>EditNote()}/>
 
             </div>

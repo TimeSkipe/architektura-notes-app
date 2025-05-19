@@ -6,44 +6,55 @@ import axios from "axios"
 
 const CreateCategory = () => {
 
+    // CreateCategory its modal component form, for create a new category
+
+
+    // Zustand state
     const CreateCategoryWindow = HomeStore((state)=> state.CreateCategoryWindow)
     const setCreateCategoryWindow = HomeStore((state) => state.setCreateCategoryWindow)
 
-
+    // React useStates
     const [CategoryName, setCategoryName] = useState('')
     const [ColorCategory, setColorCategory] = useState('')
 
     
+    // Create CategoryFun, its axios request to server to create a new category
     const CreateCategoryFun = async () =>{
         try {
             const response = await axios.post('http://localhost:3500/api/notes/category', {
               name:CategoryName,
               color:ColorCategory
             })
-            console.log('Category was created', response.data)
+            //console.log('Category was created', response.data)
             setCreateCategoryWindow(false)
             ClearAll()
             window.location.reload();
+
           } catch (error) {
             console.error('ERROR', error)
           }
     }
     
+    // Clear all, serve as cleaning company
     const ClearAll = () =>{
         setCategoryName("")
         setColorCategory("")
     }
+
+
     return(
         <div className={` ${CreateCategoryWindow ? "" : "hidden"} absolute h-[100vh] w-[100vw] bg-white top-0 right-0 z-50`}>
             
             <div className="w-1/2 m-0 m-auto">
-                {/* */}
+                
+                
+                {/*  Form title */}
                 <div className="flex justify-between items-center text-[24px] h-15 py-2">
                     Create a category 
                     <CloseIcon className={"cursor-pointer"} onClick ={()=>{setCreateCategoryWindow(false);ClearAll()}}/>
                 </div>
 
-                {/* */}
+                {/* Input */}
                 <div className="flex flex-col mb-3">
                     Name of category
                     <input value={CategoryName} onChange={(e)=>setCategoryName(e.target.value)} type="text" placeholder="Write a text" className="h-[50px] bg-[#F3F3F3] rounded-[15px] px-3 shadow-[2px_2px_4px_rgba(0,0,0,0.25)] outline-none"/>
@@ -65,7 +76,7 @@ const CreateCategory = () => {
 
                 
 
-                {/* */}
+                {/* Save button for create category */}
                 <SaveButton onClick={CreateCategoryFun}/>
 
             </div>

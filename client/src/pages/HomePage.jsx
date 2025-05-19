@@ -11,10 +11,16 @@ import { useEffect } from 'react'
 
 const HomePage = () =>{
 
+    // The main page of app, this com contain modal windows and component that show list of notes, and filter com
+
+
+    // Zustand state
     const setNotes = HomeStore((state) => state.setNotes)
     const setCategories = HomeStore((state) => state.setCategories)
     const filteredNotes = HomeStore(state => state.filteredNotes);
+    const setCreateNoteWindow = HomeStore((state) => state.setCreateNoteWindow)
 
+    // Get request on server, that get all notes
     const GetNotes = async () =>{
         try {
             const response = await axios.get('http://localhost:3500/api/notes')
@@ -24,6 +30,7 @@ const HomePage = () =>{
         }
     }
     
+    // Get request on server, that get all categories
     const GetCategory = async ()=>{
         try {
             const response = await axios.get("http://localhost:3500/api/notes/category")
@@ -33,12 +40,12 @@ const HomePage = () =>{
         }
     }
 
+
     useEffect(() => {
         GetNotes()
         GetCategory()
     }, [])
 
-    const setCreateNoteWindow = HomeStore((state) => state.setCreateNoteWindow)
 
     return(
         <>
@@ -46,8 +53,11 @@ const HomePage = () =>{
             <div className="text-[24px] h-[200px] bg-[#1C68DA] tracking-[10px] text-white w-full flex justify-center items-center">
                 Personal Journaling App
             </div>
+
+            {/* SearchBlock component, for search note */}
             <SearchBlock/>
 
+            {/* Filter component, filter by categories and title */}
             <Filter/>
 
             {/* List of Notes */}
@@ -58,12 +68,17 @@ const HomePage = () =>{
             </div>
 
             
-            
+            {/* CreateNote modal component */}
             <CreateNote/>
+
+            {/* CreateCategory modal component */}
             <CreateCategory/>
+
+            {/* CheckPassword modal component */}
+            <CheckPassword/>
+
         </div>
             {/* button for create note */}
-
             <CreateButton onClick={()=> setCreateNoteWindow(true)}/>
         </>
     )

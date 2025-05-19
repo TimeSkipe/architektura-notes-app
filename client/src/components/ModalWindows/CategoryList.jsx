@@ -2,13 +2,15 @@ import HomeStore from "../../store/HomePageStore"
 
 const CategoryList = () =>{
 
+    // CategoryList is modal componens, that show a list of categories and button for create a new category
+
+    //Zustand state
     const CategoryList = HomeStore((state) => state.CategoryList)
     const setCategoryList = HomeStore((state) => state.setCategoryList)
     const setCreateCategoryWindow = HomeStore((state) => state.setCreateCategoryWindow)
-
     const categories = HomeStore((state) => state.categories || [])
-
     const setActiveCategory = HomeStore((state) => state.setActiveCategory)
+
 
     return(
         <>

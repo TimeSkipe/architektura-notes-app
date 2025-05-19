@@ -5,14 +5,21 @@ import CategoryList from "../ModalWindows/CategoryList"
 
 const Filter = () =>{
 
-    const setCategoryList = HomeStore((state) => state.setCategoryList)
+    // Filter component, that show active category below search block, that component contain, category list, button for create a category, and list of active category
 
+
+    // zustand state
+    const setCategoryList = HomeStore((state) => state.setCategoryList)
     const ActiveCategory = HomeStore((state) => state.ActiveCategory || [])
     const removeActiveCategory = HomeStore((state) => state.removeActiveCategory)
+
+
 
     return(
         <div className="w-1/2 m-0 m-auto flex justify-center items-end h-[70px]">
             <div className="flex justify-between w-full items-center relative">
+
+
 
                 {/* Active category list*/}
                 <div className="w-[85%] h-[30px] flex">
@@ -34,6 +41,8 @@ const Filter = () =>{
 
                 </div>
 
+
+
                 {/* button open category list */}
                 <div onClick={()=>setCategoryList(true)} className="flex justify-center items-center cursor-pointer">
                     <div className="text-[#686868]">
@@ -42,8 +51,12 @@ const Filter = () =>{
                     <FilterIcon className={"mx-1"}/>
                 </div>
 
+
+
                 {/* Modal windown to chose a category */}
                 <CategoryList/>
+
+
             </div>
         </div>
     )

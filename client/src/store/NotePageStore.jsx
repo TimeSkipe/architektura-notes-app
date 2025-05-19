@@ -2,6 +2,8 @@ import { create } from "zustand";
 
 const NotePageStore = create((set)=>({
 
+    // NotePagesStore its Zustand store, which use only in NotePage
+
     Note:[],
     setNote:(note)=>set({note, Note:note}),
 

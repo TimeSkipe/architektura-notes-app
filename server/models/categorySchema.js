@@ -1,6 +1,9 @@
 import mongoose from 'mongoose';
 
 const CategorySchema = new mongoose.Schema({
+
+  // Model of Category for mongo
+  
   name: {
     type: String,
     required: true
