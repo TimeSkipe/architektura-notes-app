@@ -39,7 +39,7 @@ const CheckPassword = () =>{
 
 
     return(
-        <div className={`${activeNoteId ? "flex" : "hidden"} flex-col px-3 justify-center items-center absolute z-50 h-[300px] w-[400px] rounded-[15px] bg-[#fff] top-1/2 right-1/2 -translate-x-1/2 -translate-y-1/2 shadow-[2px_2px_4px_rgba(0,0,0,0.25)]`}>
+        <div className={`${activeNoteId ? "flex" : "hidden"} flex-col px-3 justify-center items-center absolute z-50 h-[300px] w-[400px] rounded-[15px] bg-[#fff] top-1/2 right-1/2 translate-x-1/2 translate-y-1/2 shadow-[2px_2px_4px_rgba(0,0,0,0.25)]`}>
             <div className="text-[24px] text-center relative">
                 Please write a password below to open a note
                 <CloseIcon onClick={()=>CloseModal()} className="absolute right-0 -top-4 cursor-pointer"/>

@@ -61,7 +61,7 @@ const HomePage = () =>{
             <Filter/>
 
             {/* List of Notes */}
-            <div className="m-auto m-0 w-1/2 mt-4">
+            <div className="m-auto m-0 lg:w-1/2 sm:w-[90%] mt-4">
                 {!filteredNotes ? <div>Loading...</div> : (
                     filteredNotes.map(note => <NoteBlock key={note._id} data={note}/>)
                 )}

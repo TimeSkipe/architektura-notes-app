@@ -16,7 +16,7 @@ const Filter = () =>{
 
 
     return(
-        <div className="w-1/2 m-0 m-auto flex justify-center items-end h-[70px]">
+        <div className="lg:w-1/2 sm:w-[90%] m-0 m-auto flex justify-center items-end h-[70px]">
             <div className="flex justify-between w-full items-center relative">
 
 
@@ -27,7 +27,7 @@ const Filter = () =>{
                         ActiveCategory.map(category => (
                             <div
                             key={category._id}
-                            className="bg-[#D9D9D9] h-full py-1 pl-2 rounded-[10px] ml-1 flex justify-center items-center"
+                            className="bg-[#D9D9D9] whitespace-nowrap overflow-hidden text-ellipsis h-full py-1 pl-2 rounded-[10px] ml-1 flex justify-center items-center"
                             >
                             {category.name}
                             <CloseIcon
@@ -44,8 +44,8 @@ const Filter = () =>{
 
 
                 {/* button open category list */}
-                <div onClick={()=>setCategoryList(true)} className="flex justify-center items-center cursor-pointer">
-                    <div className="text-[#686868]">
+                <div onClick={()=>setCategoryList(true)} className="flex justify-center items-center cursor-pointer px-1">
+                    <div className="text-[#686868] w-20 text-right ">
                         Sort By 
                     </div>
                     <FilterIcon className={"mx-1"}/>
