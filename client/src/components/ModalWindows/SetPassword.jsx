@@ -19,6 +19,8 @@ const SetPassWordCom = () =>{
     // Zustand state
     const CreatePasswordWindow = NotePageStore((state) => state.CreatePasswordWindow)
     const setCreatePasswordWindow = NotePageStore((state) => state.setCreatePasswordWindow)
+    const Note = NotePageStore((state) => state.Note)
+
 
     //Clear fun
     const ClearAll = () =>{
@@ -46,7 +48,7 @@ const SetPassWordCom = () =>{
             <div className="w-1/2 m-0 m-auto">
                 {/* Form title */}
                 <div className="flex justify-between items-center text-[24px] h-15 py-2 text-black">
-                    Add password
+                    {Note.password ? "Add new password" : "Add password"}
                     <CloseIcon className={"cursor-pointer"} onClick ={()=>{ ClearAll(); setCreatePasswordWindow(false)}}/>
                 </div>
 

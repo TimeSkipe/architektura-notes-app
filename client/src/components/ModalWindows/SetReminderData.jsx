@@ -21,7 +21,7 @@ const SetReminderDataCom = () =>{
     // Zustand state
     const ReminderData = NotePageStore((state) => state.ReminderData)
     const setReminderData = NotePageStore((state) => state.setReminderData)
-
+    const Note = NotePageStore((state) => state.Note)
 
     //Clear funk
     const ClearAll = () =>{
@@ -50,7 +50,7 @@ const SetReminderDataCom = () =>{
             <div className="w-1/2 m-0 m-auto">
                 {/* Form title */}
                 <div className="flex justify-between items-center text-[24px] h-15 py-2 text-black">
-                    Add reminder
+                    {Note.reminderDate ? "Change reminder date" : "Add reminder"}
                     <CloseIcon className={"cursor-pointer"} onClick ={()=>{ ClearAll(); setReminderData(false)}}/>
                 </div>
 
